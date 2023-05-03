@@ -44,13 +44,13 @@ export default class PipeSystem {
 
     pause() {
         if(this.spawnTimer) {
-            this.spawmTimer.paused = true;
+            this.spawnTimer.paused = true;
         }
     }
 
     resume() {
         if(this.spawnTimer) {
-            this.spawmTimer.paused = false
+            this.spawnTimer.paused = false
         }
     }
 

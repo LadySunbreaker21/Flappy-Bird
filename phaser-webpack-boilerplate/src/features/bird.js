@@ -1,5 +1,5 @@
 const FLAP_VELOCITY = 300;
-const OFFNOUNDS_THRESHOLD = 15; 
+const OFFBOUNDS_THRESHOLD = 15; 
 
 export default class Bird extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture) {
@@ -20,7 +20,7 @@ export default class Bird extends Phaser.GameObjects.Sprite {
       } 
 
       checkOffbounds (callback) {
-        if(this.getBounds().top < 0 - OFFNOUNDS_THRESHOLD || this.getBounds().bottom > this.scene.config.height + OFFNOUNDS_THRESHOLD ) {
+        if(this.getBounds().top < 0 - OFFBOUNDS_THRESHOLD || this.getBounds().bottom > this.scene.config.height + OFFBOUNDS_THRESHOLD ) {
             callback();
         }
       }
