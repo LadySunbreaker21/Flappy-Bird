@@ -29,6 +29,7 @@ export default class FlappyBirdScene extends Phaser.Scene {
     showMenu(menu) {
         let yPos = menu.fisrtItemPosition.y;
         this.activeMenu = this.add.group();
+
         menu.items.forEach(item => {
             const textObject = this.add.text(menu.fisrtItemPosition.x, yPos, item.label, item.style)
             .setOrigin(menu.origin.x, menu.origin.y)
@@ -41,6 +42,11 @@ export default class FlappyBirdScene extends Phaser.Scene {
 
         });
 
+    }
+
+    hideMenu() {
+        if(this.activeMenu) this.activeMenu.clear(true, true);
+        this.activeMenu = null;
     }
 }
 

@@ -22,7 +22,7 @@ export default class GameScene extends FlappyBirdScene {
 
     preload() {
         
-        this.load.image("bird", "assets/bird.png");
+        this.load.spritesheet("bird", "assets/birdSprite.png", {frameWidth: 16, frameHeight: 16});
         this.load.image("pipe", "assets/pipe.png");
         this.load.image("pause_button", "assets/pause.png");
         
@@ -88,5 +88,45 @@ export default class GameScene extends FlappyBirdScene {
             this.pipeSystem.pause();
             this.isPaused = true;
             this.pauseButton.setVisible(false);
+
+            const continueButtonCallbacks = {
+                onClick: this.resume,
+                onMouseEnter: text => text.setFill("#0F0"),
+                onMouseExit: text => text.setFill("#FFF"),
+                }
+
+            const quitButtonCallbacks = {
+                onClick: this.quitGame,
+                onMouseEnter: text => text.setFill("#F00"),
+                onMouseExit: text => text.setFill("#FFF"),
+                }
+
+                
+
+        const pauseMenu = {
+            items: [
+                {label: "Continue", style: {sontSize: "32px", fill: "#FFF"}, ...continueButtonCallbacks},
+                {label: "Quit", style: {sontSize: "32px", fill: "#FFF"}, ...quitButtonCallbacks},
+            ],
+
+
+            fisrtItemPosition: {x: this.config.width / 2, y: this.config.height / 2},
+            origin: {x: 0.5, y: 0.5},
+            spacing: 45
+            }
+
+            this.showMenu(pauseMenu);
+          }
+
+          resume() {
+            this.physics.resume();
+            this.pipeSystem.resume();
+            this.isPaused = false;
+            this.pauseButton.setVisible(true);
+            this.hideMenu();
+          }
+
+          quitGame() {
+            this.scene.start("MenuScene")
           }
         }      

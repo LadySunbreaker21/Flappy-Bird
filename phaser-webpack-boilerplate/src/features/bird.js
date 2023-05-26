@@ -10,6 +10,27 @@ export default class Bird extends Phaser.GameObjects.Sprite {
         this.body.immovable = true;
         scene.input.keyboard.on("keydown-SPACE", this.flap, this);
         this.blocked = false;
+
+        this.anims.create({
+          key: "fly",
+          frames: this.anims.generateFrameNumbers("bird", {start: 8, end: 15}),
+          frameRate: 13,
+          repeat: -1
+        });
+
+        this.anims.create({
+          key: "die",
+          frames: this.anims.generateFrameNumbers("bird", {start: 16, end: 18}),
+          frameRate: 8,
+          repeat: 0
+        });
+
+
+        this.play("fly");
+        this.setFlipX(true);
+        this.setScale(3);
+
+        this.body.setSize(14,8);
     }
 
 
